@@ -7,11 +7,18 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class HeroService {
+ 
 
   constructor(private messageSrv: MessageService) { }
 
-  getHeroes() : Hero[] {
-    this.messageSrv.add("HeroService: capturando heroes");
+  getHeroes(): Hero[] {
+    this.messageSrv.add('HeroService: capturando heroes');
+    return HEROES;
+  }
+  add(heroe: Hero): Hero[] {
+    heroe.id = HEROES.length + 1;
+    HEROES.push(heroe);
+    this.messageSrv.add('{{heroe.name}} creado correctamente');
     return HEROES;
   }
 }
